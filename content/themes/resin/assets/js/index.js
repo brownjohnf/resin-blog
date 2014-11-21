@@ -6,9 +6,10 @@
 (function ($) {
     "use strict";
 
-    $(document).ready(function(){
+    $(document).ready(function() {
+        mixpanel.track('Blog', { page: location.href })
 
-        // On the home page, move the blog icon inside the header 
+        // On the home page, move the blog icon inside the header
         // for better relative/absolute positioning.
 
         //$("#blog-logo").prependTo("#site-head-content");

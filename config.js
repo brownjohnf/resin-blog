@@ -25,6 +25,7 @@ config = {
         //  },
         // ```
 
+        mixpanelToken: 'cb974f32bab01ecc1171937026774b18',
         database: {
             client: 'sqlite3',
             connection: {
@@ -45,6 +46,7 @@ config = {
     // Configure your URL and mail settings here
     production: {
         url: 'http://resin.io/blog/',
+        mixpanelToken: '99eec53325d4f45dd0633abd719e3ff1',
         mail: {},
         database: {
             client: 'sqlite3',

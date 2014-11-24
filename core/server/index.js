@@ -112,6 +112,11 @@ function setup(server) {
     }).then(function () {
         var adminHbs = hbs.create();
 
+        // Pass mixpanelToken to the view
+        server.locals({
+            'mixpanelToken': config().mixpanelToken
+        });
+
         // ##Configuration
         server.set('version hash', assetHash);
 

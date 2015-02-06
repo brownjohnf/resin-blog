@@ -178,12 +178,6 @@ function init(options) {
         initNotifications();
         // ##Configuration
 
-
-        // Pass mixpanelToken to the view
-        // blogApp.locals({
-        //     'mixpanelToken': config.mixpanelToken
-        // });
-
         // return the correct mime type for woff filess
         express['static'].mime.define({'application/font-woff': ['woff']});
 

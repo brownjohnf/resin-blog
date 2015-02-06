@@ -1,0 +1,14 @@
+{
+  "name": "resin-mixpanel",
+  "version": "1.0.0",
+  "dependencies": {
+    "ghost-app": "0.0.2"
+  },
+  "ghost": {
+    "permissions": {
+      "filters": [
+        "ghost_foot"
+      ]
+    }
+  }
+}

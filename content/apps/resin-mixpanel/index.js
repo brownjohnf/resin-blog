@@ -17,7 +17,6 @@ MixpanelApp = App.extend({
     },
     handleGhostFoot: function (ghost_foot) {
       ghost_foot.push('<script type="text/javascript">window.mixpanelToken = "' + getMixpanelToken() + '";</script>');
-      ghost_foot.push('<script src="/assets/js/mixpanel.js"></script>');
 
       return ghost_foot;
     }

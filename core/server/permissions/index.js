@@ -6,6 +6,7 @@ var _                   = require('lodash'),
     errors              = require('../errors'),
     Models              = require('../models'),
     effectivePerms      = require('./effective'),
+    i18n                = require('../i18n'),
     init,
     refresh,
     canThis,
@@ -24,11 +25,17 @@ function hasActionsMap() {
 function parseContext(context) {
     // Parse what's passed to canThis.beginCheck for standard user and app scopes
     var parsed = {
-            internal: false,
-            user: null,
-            app: null,
-            public: true
-        };
+        internal: false,
+        external: false,
+        user: null,
+        app: null,
+        public: true
+    };
+
+    if (context && (context === 'external' || context.external)) {
+        parsed.external = true;
+        parsed.public = false;
+    }
 
     if (context && (context === 'internal' || context.internal)) {
         parsed.internal = true;
@@ -49,7 +56,7 @@ function parseContext(context) {
 }
 
 function applyStatusRules(docName, method, opts) {
-    var errorMsg = 'You do not have permission to retrieve ' + docName + ' with that status';
+    var errorMsg = i18n.t('errors.permissions.applyStatusRules.error', {docName: docName});
 
     // Enforce status 'active' for users
     if (docName === 'users') {
@@ -116,8 +123,10 @@ CanThisResult.prototype.buildObjectTypeHandlers = function (objTypes, actType, c
         role:       Models.Role,
         user:       Models.User,
         permission: Models.Permission,
-        setting:    Models.Settings
+        setting:    Models.Settings,
+        subscriber: Models.Subscriber
     };
+
     // Iterate through the object types, i.e. ['post', 'tag', 'user']
     return _.reduce(objTypes, function (objTypeHandlers, objType) {
         // Grab the TargetModel through the objectTypeModelMap
@@ -193,7 +202,7 @@ CanThisResult.prototype.buildObjectTypeHandlers = function (objTypes, actType, c
                     return;
                 }
 
-                return Promise.reject(new errors.NoPermissionError('You do not have permission to perform this action'));
+                return Promise.reject(new errors.NoPermissionError(i18n.t('errors.permissions.noPermissionToAction')));
             });
         };
 
@@ -211,7 +220,7 @@ CanThisResult.prototype.beginCheck = function (context) {
     context = parseContext(context);
 
     if (!hasActionsMap()) {
-        throw new Error('No actions map found, please call permissions.init() before use.');
+        throw new Error(i18n.t('errors.permissions.noActionsMapFound.error'));
     }
 
     // Kick off loading of effective user permissions if necessary

@@ -1,9 +1,9 @@
+.DS_Store
 node_modules
 /content/data/ghost.db
 /content/data/ghost-dev.db
-/content/data/*.json
 npm-debug.log
-.idea
-.DS_Store
-*.swp
+/content/images/*/*
 *.swo
+*.swp
+.git

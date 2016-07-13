@@ -6,10 +6,10 @@ WORKDIR /usr/src/app
 
 COPY package.json ./.
 COPY core ./core
-RUN npm install --unsafe-perm \
+RUN npm install --unsafe-perm --production \
 	&& npm cache clean
 
 COPY . .
 
 ENTRYPOINT ["/usr/local/bin/npm"]
-CMD ["start", "--development"]
+CMD ["start", "--production"]

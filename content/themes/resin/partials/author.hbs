@@ -1,0 +1,14 @@
+{{#author}}
+  <section class="author">
+    {{#if image}}
+      <figure class="author-image">
+          <a class="img" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
+      </figure>
+    {{/if}}
+    <div class="author-meta">
+      {{#if name}}<span class="author-name"><a href="{{url}}">{{name}}</a></span>{{/if}}
+      {{#if bio}}<span> | {{bio}}</span>{{/if}}
+      {{#if location}}<span class="author-location icon-location"> | {{location}}</span>{{/if}}
+    </div>
+  </section>
+{{/author}}

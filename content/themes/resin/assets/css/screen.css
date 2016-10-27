@@ -681,7 +681,50 @@ table.plain {
     height: 100%;
 }
 
+.author {
+  padding: 10px 0;
+  font-family: 'proxima-nova', 'Open Sans', sans-serif;
+  color: #9d9d9d;
+  border-bottom: #EBF2F6 1px solid;
+}
 
+.author-meta {
+  display: inline-block;
+  line-height: 60px;
+  vertical-align: top;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.author-name {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.author-image {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+    padding: 6px;
+    background: #fff;
+    z-index: 2;
+    box-shadow: #E7EEF2 0 0 0 1px;
+}
+
+.author-image .img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 100%;
+}
 /* ==========================================================================
    7. Pagination - Tools to let you flick between pages
    ========================================================================== */
@@ -928,7 +971,7 @@ table.plain {
         max-height: 80px;
     }
 
-    .inner, 
+    .inner,
     .pagination {
         width: auto;
         margin-left: 16px;
@@ -985,12 +1028,6 @@ table.plain {
     .post-footer {
         padding: 4rem 0;
         text-align: center;
-    }
-
-    .post-footer .author {
-        margin: 0 0 2rem 0;
-        padding: 0 0 1.6rem 0;
-        border-bottom: #EBF2F6 1px dashed;
     }
 
     .post-footer .button {

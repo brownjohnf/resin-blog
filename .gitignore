@@ -2,6 +2,7 @@ node_modules
 /content/data/ghost.db
 /content/data/ghost-dev.db
 /content/data/*.json
+/content/images
 npm-debug.log
 .idea
 .DS_Store

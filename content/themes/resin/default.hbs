@@ -29,6 +29,7 @@
 
     {{! Everything else gets inserted here }}
     {{navigation}}
+    {{> search}}
     {{{body}}}
 
     <footer class="site-footer">
@@ -48,8 +49,7 @@
 
     {{! Need to include it manually because ghost app does not support assets }}
     <script src="{{asset 'js/mixpanel.js'}}"></script>
-
-    {{! The main JavaScript file for Casper }}
+    <script type="text/javascript" src="{{asset "js/ghostHunter.min.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/prism.js"}}"></script>
 

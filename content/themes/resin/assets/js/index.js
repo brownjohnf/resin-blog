@@ -10,8 +10,10 @@
         // On the home page, move the blog icon inside the header
         // for better relative/absolute positioning.
 
-        //$("#blog-logo").prependTo("#site-head-content");
-
+        $('.menu-btn').click (function(){
+          $(this).toggleClass('active');
+          $('.nav').toggleClass('active')
+        });
     });
 
 }(jQuery));

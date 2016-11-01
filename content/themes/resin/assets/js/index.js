@@ -28,7 +28,7 @@
         before          : function(){
           $('.search-loading').show()
         },
-        onComplete		: function(){
+        onComplete      : function(){
           $('.search-loading').hide()
         }
       });

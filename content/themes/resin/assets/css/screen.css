@@ -407,6 +407,9 @@ table.plain {
 }
 
 /* Yo-logo. Yolo-go. Upload one in ghost/settings/ */
+#blog-logo {
+  color: #fff;
+}
 #blog-logo img {
     display: block;
     max-height: 100px;
@@ -724,6 +727,81 @@ table.plain {
     background-size: cover;
     background-position: center center;
     border-radius: 100%;
+}
+
+/* search functionality */
+
+.search-drawer {
+  position: fixed;
+  right:-450px;
+  width: 400px;
+  max-width: 100%;
+  background: white;
+  z-index: 1;
+  top: 0;
+  transition: right 0.3s ease;
+  padding: 15px;
+  height: 100%;
+  -webkit-box-shadow: -11px 10px 20px -7px rgba(80,88,93,0.32);
+  -moz-box-shadow: -11px 10px 20px -7px rgba(80,88,93,0.32);
+  box-shadow: -11px 10px 20px -7px rgba(80,88,93,0.32);
+  font-family: 'proxima-nova', 'Open Sans', sans-serif;
+  overflow-y: scroll;
+}
+
+.search-box {
+  width: 100%;
+}
+
+.search-drawer.open {
+  right:0;
+}
+
+.seach-title {
+  font-size: 18px;
+}
+
+.search-results {
+  margin-top: 15px;
+  border-top: 1px solid #efefef;
+}
+
+.search-result {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #efefef;
+  display: block;
+}
+
+.search-result h5, .search-result p  {
+  margin: 5px 0;
+}
+
+.search-loading {
+  display: none;
+  color: #fcc100;
+  text-align: center;
+  padding: 20px;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.state-flashing {
+  -webkit-animation: flash 1s infinite; /* Safari 4.0 - 8.0 */
+  animation: flash 1s infinite;
+}
+
+#search-close {
+  cursor: pointer;
+  color: #9d9d9d;
+  margin-right: 5px;
+  vertical-align: text-top;
 }
 /* ==========================================================================
    7. Pagination - Tools to let you flick between pages

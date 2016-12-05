@@ -7,3 +7,6 @@ npm-debug.log
 *.swo
 *.swp
 .git
+/content/data/*.json
+.idea
+.dockerenv

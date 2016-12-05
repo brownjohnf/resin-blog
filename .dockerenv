@@ -1,0 +1,4 @@
+GHOST_URL=http://localhost:2368/blog
+GHOST_PORT=2368
+GHOST_SQLITE_PATH=content/data/ghost.db
+GHOST_DATA_PATH=content

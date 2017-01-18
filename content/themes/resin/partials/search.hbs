@@ -1,12 +1,12 @@
-<div class="search-drawer">
-  <h5 class="seach-title">
-    <span id="search-close" class="glyphicon glyphicon-remove"></span>Search:
-  </h5>
-  <form class="search-form">
-    <input id="search-field" type="search" class="search-box">
+<div id="search-drawer" class="drawer">
+  <div class="clearfix">
+    <i id="search-close" type="button" class="search-close pull-left glyphicon  glyphicon-remove xs" aria-label="Close"></i>
+  </div>
+  <form class="form-group">
+    <input id="search-field" type="search" placeholder="Search Blog" class="form-control">
   </form>
-  <div class="search-loading">
-    <i class="glyphicon glyphicon-flash state-flashing"></i>
+  <div id="search-loading" class="search-loading">
+    <i class="glyphicon glyphicon-flash state-flashing btn-xs"></i>Loading...
   </div>
   <div id="search-results" class="search-results"></div>
 </div>

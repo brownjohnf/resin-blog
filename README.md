@@ -29,8 +29,8 @@ Start your engines.
 
 ```bash
 npm start
-## running production? Add --production
-## running on staging server? $ GHOST_CONFIG=staging npm start --production
+## running production? $ NODE_ENV=production npm start
+## running on staging? $ NODE_ENV=staging npm start
 ```
 
 `http://localhost:2368/ghost` :tada:

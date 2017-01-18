@@ -14,22 +14,23 @@
       });
 
       $('#search-open').click(function() {
-        $('.search-drawer').addClass('open')
+        $('#search-drawer').addClass('open')
       })
 
       $('#search-close').click(function() {
-        $('.search-drawer').removeClass('open')
+        $('#search-drawer').removeClass('open')
       })
 
       $("#search-field").ghostHunter({
         results         : "#search-results",
         info_template   : "<p>Number of posts found: {{amount}}</p>",
-        result_template : "<a class='search-result' href='{{link}}'><h5>{{title}}</h5><p>{{pubDate}}</p></a>",
+        onKeyUp         : true
+        result_template : "<a class='search-result', href='{{link}}'><h5>{{title}}</h5><p>{{pubDate}}</p></a></hr>",
         before          : function(){
-          $('.search-loading').show()
+          $('#search-loading').show()
         },
         onComplete      : function(){
-          $('.search-loading').hide()
+          $('#search-loading').hide()
         }
       });
     });

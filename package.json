@@ -4,6 +4,7 @@
   "description": "resin.io's blog",
   "main": "index.js",
   "dependencies": {
+    "express": "4.14.0",
     "ghost": "^0.11.4"
   },
   "scripts": {

@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
+import Home from 'containers/Home';
 import Post from 'containers/Post';
 import Tag from 'containers/Tag';
-import Error from 'containers/Error';
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = window.__STATE_FROM_SERVER__
   }
 
   render () {
     return(
       <div>
         <Link to={`/`}>Home</Link>
-        <Link to={`/random-post`}>Post</Link>
+        <Link to={`/random-post`}>ballbags</Link>
         <Link to={`/tag/my-name`}>tags</Link>
         {this.props.children}
       </div>
@@ -26,6 +29,7 @@ class App extends Component {
 render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
+      <IndexRoute component={Home}/>
       <Route path="tag/:tagName" component={Tag}/>
       <Route path=":postName" component={Post}/>
       <Route path="*" component={Error}/>

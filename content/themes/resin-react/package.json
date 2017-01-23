@@ -13,6 +13,7 @@
     "webpack": "1.12.12"
   },
   "dependencies": {
+    "excerpts": "0.0.2",
     "json-loader": "0.5.4",
     "markdown-it": "8.2.2",
     "react": "0.14.7",

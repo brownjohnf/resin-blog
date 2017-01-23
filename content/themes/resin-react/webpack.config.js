@@ -18,6 +18,9 @@ module.exports = {
     }
   },
   resolveLoader: {
+    /*
+    manually resolve loaders because when running webpack from other cwd they are not found.
+    */
     root: [
       path.resolve(__dirname, './node_modules')
     ]

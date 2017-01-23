@@ -5,10 +5,6 @@ import Home from 'containers/Home';
 import Post from 'containers/Post';
 import Tag from 'containers/Tag';
 
-if (module.hot) {
-  module.hot.accept();
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,9 +26,9 @@ render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
+      <Route path="page/:pageName" component={Home}/>
       <Route path="tag/:tagName" component={Tag}/>
       <Route path=":postName" component={Post}/>
-      <Route path="*" component={Error}/>
     </Route>
   </Router>
 ), document.getElementById('content'));

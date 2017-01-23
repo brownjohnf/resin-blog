@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { markdown } from '../utils';
+import { markdown, getExcerpt } from '../utils';
 
 class Summary extends Component {
   render() {
@@ -7,7 +7,7 @@ class Summary extends Component {
     return (
       <div>
         <h1>{post.title}</h1>
-        <p dangerouslySetInnerHTML={{__html: markdown(post.markdown)}} />;
+        <p dangerouslySetInnerHTML={{__html: getExcerpt(markdown(post.markdown)) }}></p>;
       </div>
     )
   }

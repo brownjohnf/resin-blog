@@ -1,10 +1,4 @@
-const MarkdownIt = require('markdown-it');
-const md = new MarkdownIt();
 const excerpts = require('excerpts');
-
-const markdown = (source) => {
-  return md.render(source);
-}
 
 const getExcerpt = (html) => {
   return excerpts(html, {
@@ -13,4 +7,4 @@ const getExcerpt = (html) => {
   })
 }
 
-export { markdown, getExcerpt }
+export { getExcerpt }

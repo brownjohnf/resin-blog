@@ -4,9 +4,18 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import Home from 'containers/Home';
 import Post from 'containers/Post';
 
-browserHistory.listen(location => {
-  console.log(location.pathname);
-});
+const routeHandler = () => {
+  if (ga != undefined) {
+    // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
+    ga('set', 'page', window.location.pathname);
+    ga('send', 'pageview');
+  }
+  if (_gs != undefined) {
+    // https://www.gosquared.com/docs/api/javascript-tracking-code/track-pageviews
+    _gs('track');
+    _gs('track', window.location.pathname, document.title);
+  }
+}
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +33,7 @@ class App extends Component {
 }
 
 render((
-  <Router history={browserHistory}>
+  <Router history={browserHistory} onUpdate={routeHandler}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="page/:pageNumber" component={Home}/>

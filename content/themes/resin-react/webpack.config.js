@@ -1,29 +1,30 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const isDevMode = process.env.NODE_ENV === 'development' ? true : false;
+
+const entries = [ path.join(__dirname,'src/index.js') ];
+const plugins = [];
+
+if (isDevMode) {
+  // add HMR in dev mode
+  entries.push('webpack-hot-middleware/client?timeout=2000&overlay=false');
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+}
 
 module.exports = {
-  entry: [
-  'webpack-hot-middleware/client?timeout=2000&overlay=false',
-  path.join(__dirname,'src/index.js')
-  ],
+  // explicitly set context because webpack is often called from parent dir
+  context: __dirname,
+  entry: entries,
   output: {
-    path: '/',
+    path: '/assets',
     filename: 'bundle.js',
-    publicPath: 'http://localhost:2368/assets/js'
+    publicPath: '/assets/'
   },
   resolve: {
     alias: {
       containers: path.join(__dirname, '/src/containers'),
       components: path.join(__dirname, '/src/components')
     }
-  },
-  resolveLoader: {
-    /*
-    manually resolve loaders because when running webpack from other cwd they are not found.
-    */
-    root: [
-      path.resolve(__dirname, './node_modules')
-    ]
   },
   module: {
     loaders: [
@@ -35,7 +36,5 @@ module.exports = {
       { test: /\.json$/, loader: "json" }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: plugins
 };

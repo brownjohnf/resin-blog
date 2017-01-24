@@ -1,22 +1,26 @@
 // # Ghost Startup
-var ghost = require('ghost'),
-    express = require('express'),
-    webpack = require('webpack'),
-    webpackDevMiddleware = require('webpack-dev-middleware'),
-    webpackHotMiddleware = require('webpack-hot-middleware'),
-    path = require('path'),
-    parentApp = express();
+const ghost = require('ghost');
+const express = require('express');
+const path = require('path');
 
-const webpackConfig = require('./content/themes/resin-react/webpack.config');
-const compiler = webpack(webpackConfig);
+const parentApp = express();
+const isDevMode = process.env.NODE_ENV === 'development' ? true : false;
 
-// use hmr api to rebuild assets when /src files change
-parentApp.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true, publicPath: webpackConfig.output.publicPath
-}));
+if (isDevMode) {
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackConfig = require('./content/themes/resin-react/webpack.config');
+  const compiler = webpack(webpackConfig);
 
-// inject files and reload browser
-parentApp.use(require("webpack-hot-middleware")(compiler));
+  // use hmr api to rebuild assets when /src files change
+  parentApp.use(require("webpack-dev-middleware")(compiler, {
+      noInfo: true, publicPath: webpackConfig.output.publicPath
+  }));
+
+  // inject files and reload browser
+  parentApp.use(require("webpack-hot-middleware")(compiler));
+}
 
 ghost({
   config: path.join(__dirname, 'config.js')

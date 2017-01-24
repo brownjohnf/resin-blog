@@ -1,34 +1,50 @@
 import React, { Component } from 'react';
-import { markdown } from '../utils';
+import Helmet from "react-helmet";
+import _ from 'lodash';
+
 import Summary from 'components/Summary';
 import Pagination from 'components/Pagination';
-import { browserHistory } from 'react-router';
-import { POST_PER_PAGE } from '../settings';
+import Loading from 'components/Loading';
+
+import { POST_PER_PAGE, BLOG_TITLE, BLOG_DESCRIPTION, URL } from '../settings';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: [],
-      meta: {
-        pagination: {
-          page: null,
-          pages: null
-        }
-      },
-      tags: []
-    }
+      loading: true
+    };
   }
 
-  fetchPosts(filter) {
-    fetch(ghost.url.api('posts', filter))
+  fetchPosts(query) {
+    this.setState({ loading: true })
+    fetch(ghost.url.api('posts', query))
     .then(response => response.json())
     .then((data) => {
       this.setState({
         posts: data.posts,
-        meta: data.meta
+        meta: data.meta,
+        loading: false
       })
     })
+  }
+
+  buildApiQuery(props) {
+    const { pageNumber, tagName } = props.params
+    const filter = tagName ? `tags:${tagName}`: null;
+    return {
+      page: pageNumber,
+      limit: POST_PER_PAGE,
+      include: 'tags, author',
+      filter: filter
+    }
+  }
+
+  getRoutePath(props) {
+    // gets the correct link path to pass to pagination
+    const { pageNumber, tagName } = props.params
+    const tagPath = tagName ? `/tag/${tagName}` : ''
+    return `${tagPath}/page/`
   }
 
   renderPosts(posts) {
@@ -37,29 +53,39 @@ class Home extends Component {
     })
   }
 
-  getCurrentPage(path) {
-    return path.split('/')[2] || 1
+  renderPagination(pagination) {
+    return (<Pagination
+      page={pagination.page}
+      pages={pagination.pages}
+      path={this.getRoutePath(this.props)}
+      next={ pagination.next }
+      prev={ pagination.prev }
+      />
+    )
   }
 
   componentDidMount() {
-    this.fetchPosts({ page: this.getCurrentPage(this.props.location.pathname), limit: POST_PER_PAGE, include: 'tags, author'})
+    this.fetchPosts(this.buildApiQuery(this.props))
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchPosts({ page: this.getCurrentPage(nextProps.location.pathname), limit: POST_PER_PAGE, include: 'tags, author'})
+    this.fetchPosts(this.buildApiQuery(nextProps))
   }
 
   render() {
     return (
       <div>
-        {this.renderPosts(this.state.posts)}
-        <Pagination
-          page={this.state.meta.pagination.page}
-          pages={this.state.meta.pagination.pages}
-          path="/page/"
-          next={ this.state.meta.pagination.next }
-          prev={ this.state.meta.pagination.prev }
-          />
+        <Helmet
+          title={BLOG_TITLE}
+          meta={[
+            {name: "description", content: BLOG_DESCRIPTION},
+            {property: "og:type", content: "website"},
+            {property: "og:url", content: URL + this.props.location.pathname},
+            {property: "og:image", content: 'http://resin.io/blog/content/images/2015/Jan/Header_Image_Ghost.png'},
+          ]}
+        />
+        {this.state.loading ? <Loading /> : this.renderPosts(this.state.posts)}
+        {this.state.loading ? <Loading /> : this.renderPagination(this.state.meta.pagination)}
       </div>
     )
   }

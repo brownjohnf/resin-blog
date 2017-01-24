@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { markdown, getExcerpt } from '../utils';
+import { getExcerpt } from '../utils';
+import { Link } from 'react-router';
+import Meta from 'components/Meta';
 
 class Summary extends Component {
   render() {
-    const post = this.props.post
+    const { post } = this.props;
     return (
       <div>
-        <h1>{post.title}</h1>
-        <p dangerouslySetInnerHTML={{__html: getExcerpt(markdown(post.markdown)) }}></p>;
+        <Link to={post.url}>
+          <h1>{post.title}</h1>
+        </Link>
+        <Meta tags={post.tags} date={post.date} url={post.url} />
+        <p dangerouslySetInnerHTML={{__html: getExcerpt(post.html) }}></p>
       </div>
     )
   }

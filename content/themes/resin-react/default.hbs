@@ -36,29 +36,6 @@
              <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://ghost.org">Ghost</a></section>
         </div>
     </footer>
-    <script>
-      window.__STATE_FROM_SERVER__ = {
-          posts: {
-            summaries: {
-              status: "empty"
-            },
-            bySlug: {
-              "{{slug}}": {
-                data: {
-                  slug: "{{slug}}",
-                  title: "{{title}}",
-                  meta_description: "{{meta_description}}",
-                  meta_title: "{{meta_title}}",
-                  published_at: "{{publushed_at}}",
-                  image: "{{image}}",
-                  featured: "{{featured}}"
-                },
-                status: "success"
-              }
-            }
-          }
-        };
-    </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     {{! Ghost outputs important scripts and data with this tag }}
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -67,11 +44,8 @@
     {{ghost_foot}}
 
     {{! Need to include it manually because ghost app does not support assets }}
-    <script src="{{asset 'js/bundle.js'}}"></script>
-    <script src="{{asset 'js/mixpanel.js'}}"></script>
-    <script type="text/javascript" src="{{asset "js/ghostHunter.min.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/prism.js"}}"></script>
+    <script src="{{asset 'bundle.js'}}"></script>
+    <script src="{{asset 'mixpanel.js'}}"></script>
 
     <script>
       !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
@@ -79,7 +53,10 @@
       d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
       insertBefore(d,q)}(window,document,'script','_gs');
 
-      _gs('GSN-831588-U');
+      _gs('GSN-831588-U', false);
+      setTimeout(function() {
+        _gs('track');
+      }, 1000);
     </script>
 
     <!-- GA -->

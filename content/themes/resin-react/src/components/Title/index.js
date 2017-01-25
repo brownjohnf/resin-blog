@@ -12,9 +12,9 @@ const renderLink = (title, url) => {
 const Title = (props) => {
   const { title, url } = props
   return (
-    <h1 className={styles.title}>
+    <h2 className={styles.title}>
       { renderLink(title, url) }
-    </h1>
+    </h2>
   )
 }
 

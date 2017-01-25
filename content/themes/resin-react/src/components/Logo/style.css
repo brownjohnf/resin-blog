@@ -1,0 +1,11 @@
+.container {
+  color: #fff;
+}
+
+.image {
+  display: block;
+  max-height: 100px;
+  width: auto;
+  margin: 0 auto;
+  line-height: 0;
+}

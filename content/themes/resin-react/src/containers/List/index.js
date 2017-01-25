@@ -11,7 +11,6 @@ import Excerpt from 'components/Excerpt';
 import DateTime from 'components/DateTime';
 import Title from 'components/Title';
 
-
 // Thirdparty components
 import { Link } from 'react-router';
 import ReactDisqusCounter from 'react-disqus-counter';
@@ -112,7 +111,7 @@ class List extends Component {
           ]}
         />
         {this.state.loading ? <Loading /> : this.renderPosts(this.state.posts)}
-        {this.state.loading ? <Loading /> : this.renderPagination(this.state.meta.pagination)}
+        {!this.state.loading && this.renderPagination(this.state.meta.pagination)}
       </div>
     )
   }

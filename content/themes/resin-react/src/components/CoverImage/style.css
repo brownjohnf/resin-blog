@@ -1,0 +1,16 @@
+/* Big cover image on the home page */
+.container {
+    position: relative;
+    display: table;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background: #222 no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.vertical {
+  display: table-cell;
+  vertical-align: middle;
+}

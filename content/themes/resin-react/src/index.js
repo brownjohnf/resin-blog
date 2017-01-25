@@ -3,8 +3,17 @@ import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import List from 'containers/List';
 import Single from 'containers/Single';
+
+// resin.io components
 import Footer from 'components/Footer';
+import Logo from 'components/Logo';
+import { CoverImage, Vertical } from 'components/CoverImage';
+
+import bgImg from './static/images/cover.png';
+import logoImg from './static/images/logo.png';
+
 import { URL, BLOG_TITLE } from './settings';
+
 
 const routeHandler = () => {
   if (window.ga != undefined) {
@@ -22,7 +31,11 @@ const routeHandler = () => {
 const App = (props) => {
   return(
     <div>
-      <Link to={`/`}>Home</Link>
+      <CoverImage image={bgImg} height={props.children.type.name === 'Single' ? '30vh' : '60vh'}>
+        <Vertical>
+          <Link to={`/`}><Logo image={logoImg}/></Link>
+        </Vertical>
+      </CoverImage>
       {props.children}
       <Footer title={BLOG_TITLE} url={URL} copyright='2013-2016'/>
     </div>

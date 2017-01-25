@@ -45,7 +45,14 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=public/fonts/[name].[ext]'
       },
-      { test: /\.json$/, loader: 'json' }
+      { test: /\.json$/, loader: 'json' },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+      },
     ]
   },
   plugins: plugins

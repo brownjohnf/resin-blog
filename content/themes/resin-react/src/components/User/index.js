@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import styles from './style.css';
 
-const User = () => {
+const User = (props) => {
   return (
     <span className={styles.user}>
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
-          src={this.props.image}
-          alt={this.props.name} />
+          src={props.image}
+          alt={props.name} />
       </div>
-      {this.props.name}
+      {props.name}
     </span>
   )
 }

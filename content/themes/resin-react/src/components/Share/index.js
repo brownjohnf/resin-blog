@@ -12,7 +12,7 @@ const TwitterIcon = generateShareIcon('twitter');
 const GooglePlusIcon = generateShareIcon('google');
 
 const Share = (props) => {
-  const { url } = this.props
+  const { url } = props
   return (
     <section className="share">
         <h4>Share this post</h4>

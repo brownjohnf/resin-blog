@@ -6,6 +6,8 @@ import Helmet from "react-helmet";
 import ReactMarkdown from 'react-markdown';
 import Loading from 'components/Loading';
 import Share from 'components/Share';
+import Title from 'components/Title';
+
 import styles from './style.css';
 
 class Post extends Component {
@@ -54,7 +56,7 @@ class Post extends Component {
               {property: "twitter:image", content: post.image}
             ]}
           />
-          <h1 className={styles.title}>{post.title}</h1>
+          <Title title={post.title}/>
           <ReactMarkdown source={post.markdown} />
           <Share url={URL + post.url}/>
           <ReactDisqusComments

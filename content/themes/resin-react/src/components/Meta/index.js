@@ -3,21 +3,29 @@ import moment from 'moment';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import ReactDisqusCounter from 'react-disqus-counter';
-import { URL, DISQUS_SHORTNAME } from 'settings';
+import styles from './style.css';
 
 class Meta extends Component {
   renderTags(tags) {
-    return tags.map((tag) => {
-      return <Link key={tag.slug} to={`/tag/${tag.slug}`}>{tag.name}</Link>
-    })
+    if (!_.isEmpty(tags)) {
+      return tags.map((tag, i) => {
+        return (
+          <span>
+            {i===0 ? ' on ' : ''}
+            {!!i && ", "}
+            <Link key={tag.slug} to={`/tag/${tag.slug}`}>{tag.name}</Link>
+          </span>
+        )
+      })
+    }
   }
 
   render() {
     const { date, tags, url, disqusShortName } = this.props;
     return (
-      <div>
-      {moment(date).calendar()}
-      {!_.isEmpty(tags) ? this.renderTags(tags) : null}
+      <div className={styles.container}>
+      {moment(date).format('DD MMM YYYY')}
+      {this.renderTags(tags)}
       <Link to={`${url}#disqus_thread`}>
         <ReactDisqusCounter
           url={url}

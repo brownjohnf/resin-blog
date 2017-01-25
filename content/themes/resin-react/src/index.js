@@ -29,7 +29,7 @@ class App extends Component {
       <div>
         <Link to={`/`}>Home</Link>
         {this.props.children}
-        <Footer title={BLOG_TITLE} url={BLOG_TITLE} copyright='2013-2016'/>
+        <Footer title={BLOG_TITLE} url={URL} copyright='2013-2016'/>
       </div>
     );
   }

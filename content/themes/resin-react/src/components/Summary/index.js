@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import Meta from 'components/Meta';
+import Title from 'components/Title';
+import styles from './style.css';
 
 class Summary extends Component {
   render() {
     const { url, tags, date, excerpt, disqusShortName, title } = this.props;
     return (
-      <div>
-        <Link to={url}>
-          <h1>{title}</h1>
-        </Link>
+      <article className={styles.container}>
         <Meta
           tags={tags}
           date={date}
           url={url}
           disqusShortName={disqusShortName} />
-        <p>{excerpt}</p>
-      </div>
+        <Title url={url} title={title}/>
+        <p className={styles.excerpt}>{excerpt}</p>
+      </article>
     )
   }
 }

@@ -54,7 +54,7 @@ class Home extends Component {
                 key={i}
                 title={post.title}
                 url={post.url}
-                date={post.date}
+                date={post.published_at}
                 tags={post.tags}
                 excerpt={getExcerpt(post.html)}
                 disqusShortName={DISQUS_SHORTNAME} />
@@ -62,14 +62,12 @@ class Home extends Component {
   }
 
   renderPagination(pagination) {
-    return (<Pagination
-      page={pagination.page}
-      pages={pagination.pages}
-      path={this.getRoutePath(this.props)}
-      next={ pagination.next }
-      prev={ pagination.prev }
-      />
-    )
+    return <Pagination
+              page={pagination.page}
+              pages={pagination.pages}
+              path={this.getRoutePath(this.props)}
+              next={ pagination.next }
+              prev={ pagination.prev } />
   }
 
   componentDidMount() {

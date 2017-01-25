@@ -5,8 +5,8 @@ import { getExcerpt } from '../../utils';
 import Helmet from "react-helmet";
 import ReactMarkdown from 'react-markdown';
 import Loading from 'components/Loading';
+import Share from 'components/Share';
 import styles from './style.css';
-console.log('STYLES', styles);
 
 class Post extends Component {
 
@@ -41,7 +41,7 @@ class Post extends Component {
     const { post } = this.state;
     if (post) {
       return(
-        <div className={styles.post}>
+        <div className={styles.container}>
           <Helmet
             title={post.title}
             meta={[
@@ -54,8 +54,9 @@ class Post extends Component {
               {property: "twitter:image", content: post.image}
             ]}
           />
-          <h1>{post.title}</h1>
+          <h1 className={styles.title}>{post.title}</h1>
           <ReactMarkdown source={post.markdown} />
+          <Share url={URL + post.url}/>
           <ReactDisqusComments
             shortname={DISQUS_SHORTNAME}
             title={post.title}

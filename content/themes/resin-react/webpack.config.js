@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const isDevMode = process.env.NODE_ENV === 'development' ? true : false;
 
 const entries = [ path.join(__dirname,'src/index.js') ];
-const plugins = [ new ExtractTextPlugin('styles.css') ];
+const plugins = [];
 
 if (isDevMode) {
   // add HMR in dev mode
@@ -30,6 +30,9 @@ module.exports = {
       settings: path.join(__dirname, '/src/settings')
     }
   },
+  postcss: [
+    require('autoprefixer')
+  ],
   module: {
     loaders: [
       {
@@ -37,10 +40,7 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
         exclude: /node_modules/
       },
-      {
-        test: /\.css$/,
-        loader: 'css-loader?modules'
-      },
+      { test: /\.css$/, loader:'style-loader!css-loader?modules!postcss-loader' },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=public/fonts/[name].[ext]'

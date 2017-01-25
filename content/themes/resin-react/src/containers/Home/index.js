@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from "react-helmet";
 import _ from 'lodash';
+import { getExcerpt } from '../../utils'
 
 import Summary from 'components/Summary';
 import Pagination from 'components/Pagination';
@@ -49,7 +50,14 @@ class Home extends Component {
 
   renderPosts(posts) {
     return posts.map((post, i) => {
-      return <Summary key={i} post={post} disqusShortName={DISQUS_SHORTNAME} />
+      return <Summary
+                key={i}
+                title={post.title}
+                url={post.url}
+                date={post.date}
+                tags={post.tags}
+                excerpt={getExcerpt(post.html)}
+                disqusShortName={DISQUS_SHORTNAME} />
     })
   }
 

@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Link } from 'react-router';
 import _ from 'lodash';
 import ReactDisqusCounter from 'react-disqus-counter';
-import { URL, DISQUS_SHORTNAME } from '../settings';
+import { URL, DISQUS_SHORTNAME } from 'settings';
 
 class Meta extends Component {
   renderTags(tags) {
@@ -13,14 +13,15 @@ class Meta extends Component {
   }
 
   render() {
+    const { date, tags, url, disqusShortName } = this.props;
     return (
       <div>
-      {moment(this.props.date).calendar()}
-      {!_.isEmpty(this.props.tags) ? this.renderTags(this.props.tags) : null}
-      <Link to={`${this.props.url}#disqus_thread`}>
+      {moment(date).calendar()}
+      {!_.isEmpty(tags) ? this.renderTags(tags) : null}
+      <Link to={`${url}#disqus_thread`}>
         <ReactDisqusCounter
-          url={URL + this.props.url}
-          shortname={DISQUS_SHORTNAME}
+          url={url}
+          shortname={disqusShortName}
         />
       </Link>
       </div>

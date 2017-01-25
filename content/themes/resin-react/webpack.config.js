@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const isDevMode = process.env.NODE_ENV === 'development' ? true : false;
 
 const entries = [ path.join(__dirname,'src/index.js') ];
-const plugins = [];
+const plugins = [ new ExtractTextPlugin('styles.css') ];
 
 if (isDevMode) {
   // add HMR in dev mode
@@ -16,14 +18,16 @@ module.exports = {
   context: __dirname,
   entry: entries,
   output: {
-    path: '/assets',
+    path: __dirname + '/assets',
     filename: 'bundle.js',
     publicPath: '/assets/'
   },
   resolve: {
     alias: {
       containers: path.join(__dirname, '/src/containers'),
-      components: path.join(__dirname, '/src/components')
+      components: path.join(__dirname, '/src/components'),
+      css: path.join(__dirname, '/src/static/css'),
+      settings: path.join(__dirname, '/src/settings')
     }
   },
   module: {
@@ -33,7 +37,15 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
         exclude: /node_modules/
       },
-      { test: /\.json$/, loader: "json" }
+      {
+        test: /\.css$/,
+        loader: 'css-loader?modules'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=public/fonts/[name].[ext]'
+      },
+      { test: /\.json$/, loader: 'json' }
     ]
   },
   plugins: plugins

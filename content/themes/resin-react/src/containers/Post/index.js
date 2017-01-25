@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactDisqusComments from 'react-disqus-comments';
-import { URL, DISQUS_SHORTNAME } from '../settings';
-import { getExcerpt } from '../utils';
+import { URL, DISQUS_SHORTNAME } from 'settings';
+import { getExcerpt } from '../../utils';
 import Helmet from "react-helmet";
 import ReactMarkdown from 'react-markdown';
 import Loading from 'components/Loading';
+import styles from './style.css';
+console.log('STYLES', styles);
 
 class Post extends Component {
 
@@ -39,15 +41,17 @@ class Post extends Component {
     const { post } = this.state;
     if (post) {
       return(
-        <div>
+        <div className={styles.post}>
           <Helmet
             title={post.title}
             meta={[
               {name: "description", content: getExcerpt(post.html)},
               {property: "og:type", content: "article"},
               {property: "og:url", content: URL + this.props.location.pathname},
-              {property: "og:image", content: post.image },
-              {property: "og:image", content: post.image }
+              {property: "og:image", content: post.image},
+              {property: "twitter:title", content: post.title},
+              {property: "twitter:url", content: URL + this.props.location.pathname},
+              {property: "twitter:image", content: post.image}
             ]}
           />
           <h1>{post.title}</h1>

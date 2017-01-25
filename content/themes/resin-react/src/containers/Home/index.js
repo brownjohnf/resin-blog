@@ -6,7 +6,7 @@ import Summary from 'components/Summary';
 import Pagination from 'components/Pagination';
 import Loading from 'components/Loading';
 
-import { POST_PER_PAGE, BLOG_TITLE, BLOG_DESCRIPTION, URL } from '../settings';
+import { POST_PER_PAGE, BLOG_TITLE, BLOG_DESCRIPTION, URL, DISQUS_SHORTNAME } from 'settings';
 
 class Home extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class Home extends Component {
 
   renderPosts(posts) {
     return posts.map((post, i) => {
-      return <Summary key={i} post={post} />
+      return <Summary key={i} post={post} disqusShortName={DISQUS_SHORTNAME} />
     })
   }
 
@@ -82,6 +82,9 @@ class Home extends Component {
             {property: "og:type", content: "website"},
             {property: "og:url", content: URL + this.props.location.pathname},
             {property: "og:image", content: 'http://resin.io/blog/content/images/2015/Jan/Header_Image_Ghost.png'},
+            {property: "twitter:title", content: BLOG_TITLE},
+            {property: "twitter:url", content: URL},
+            {property: "twitter:image", content: 'http://resin.io/blog/content/images/2015/Jan/Header_Image_Ghost.png'}
           ]}
         />
         {this.state.loading ? <Loading /> : this.renderPosts(this.state.posts)}

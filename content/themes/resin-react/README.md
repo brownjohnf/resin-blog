@@ -2,9 +2,11 @@
 
 # TODO:
 
-- [ ] Analytics route change
-- [ ] Better way to pull settings/nav from ghost?
+- [x] Analytics route change
 - [x] Update meta-tags for sharing on route change
 - [ ] styles
 - [ ] disqus is loading a bunch of blocked scripts
 - [ ] markdown <pre> language highlights
+
+- [ ] write components tests
+- [ ] test analytics

@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import ReactDisqusComments from 'react-disqus-comments';
 import { URL, DISQUS_SHORTNAME } from 'settings';
-import { getExcerpt } from '../../utils';
+import excerpts from 'excerpts';
+
+// resin.io components
+import Pagination from 'components/Pagination';
+import Loading from 'components/Loading';
+import PostContainer from 'components/PostContainer';
+import MetaContainer from 'components/MetaContainer';
+import Tags from 'components/Tags';
+import Excerpt from 'components/Excerpt';
+import DateTime from 'components/DateTime';
+import Title from 'components/Title';
+import Share from 'components/Share';
+import User from 'components/User';
+
 import Helmet from "react-helmet";
 import ReactMarkdown from 'react-markdown';
-import Loading from 'components/Loading';
-import Share from 'components/Share';
-import Title from 'components/Title';
+import ReactDisqusComments from 'react-disqus-comments';
+import ReactDisqusCounter from 'react-disqus-counter';
+import { Link } from 'react-router';
 
-import styles from './style.css';
-
-class Post extends Component {
+class Single extends Component {
 
   constructor(props) {
     super(props);
@@ -43,11 +53,11 @@ class Post extends Component {
     const { post } = this.state;
     if (post) {
       return(
-        <div className={styles.container}>
+        <PostContainer>
           <Helmet
             title={post.title}
             meta={[
-              {name: "description", content: getExcerpt(post.html)},
+              {name: "description", content: excerpts(post.html)},
               {property: "og:type", content: "article"},
               {property: "og:url", content: URL + this.props.location.pathname},
               {property: "og:image", content: post.image},
@@ -57,6 +67,17 @@ class Post extends Component {
             ]}
           />
           <Title title={post.title}/>
+          <MetaContainer>
+            <DateTime date={post.published_at} />
+            <Tags tags={post.tags} />
+            <Link to='#disqus_thread'>
+              <ReactDisqusCounter
+                url={post.url}
+                shortname={DISQUS_SHORTNAME}
+              />
+            </Link>
+            <User user={post.author} />
+          </MetaContainer>
           <ReactMarkdown source={post.markdown} />
           <Share url={URL + post.url}/>
           <ReactDisqusComments
@@ -66,7 +87,7 @@ class Post extends Component {
             identifier={URL + post.url}
             onNewComment={this.handleNewComment}
           />
-        </div>
+        </PostContainer>
       );
     } else {
       return (<Loading />);
@@ -74,4 +95,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default Single;

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import Helmet from "react-helmet";
 import _ from 'lodash';
-import { getExcerpt } from '../../utils'
 
-import Summary from 'components/Summary';
+// resin.io components
 import Pagination from 'components/Pagination';
 import Loading from 'components/Loading';
+import PostContainer from 'components/PostContainer';
+import MetaContainer from 'components/MetaContainer';
+import Tags from 'components/Tags';
+import Excerpt from 'components/Excerpt';
+import DateTime from 'components/DateTime';
+import Title from 'components/Title';
+
+
+// Thirdparty components
+import { Link } from 'react-router';
+import ReactDisqusCounter from 'react-disqus-counter';
+import Helmet from "react-helmet";
 
 import { POST_PER_PAGE, BLOG_TITLE, BLOG_DESCRIPTION, URL, DISQUS_SHORTNAME } from 'settings';
 
-class Home extends Component {
+class List extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -50,14 +60,22 @@ class Home extends Component {
 
   renderPosts(posts) {
     return posts.map((post, i) => {
-      return <Summary
-                key={i}
-                title={post.title}
-                url={post.url}
-                date={post.published_at}
-                tags={post.tags}
-                excerpt={getExcerpt(post.html)}
-                disqusShortName={DISQUS_SHORTNAME} />
+      return (
+              <PostContainer key={i}>
+                <MetaContainer>
+                  <DateTime date={post.published_at} />
+                  <Tags tags={post.tags} />
+                  <Link to={`${post.url}#disqus_thread`}>
+                    <ReactDisqusCounter
+                      url={post.url}
+                      shortname={DISQUS_SHORTNAME}
+                    />
+                  </Link>
+                </MetaContainer>
+                <Title title={post.title} url={post.url} />
+                <Excerpt html={post.html} />
+              </PostContainer>
+              )
     })
   }
 
@@ -100,4 +118,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default List;

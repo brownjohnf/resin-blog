@@ -1,4 +1,5 @@
-const excerpts = require('excerpts');
+import React, { Component } from 'react';
+import excerpts from 'excerpts';
 
 const getExcerpt = (html) => {
   return excerpts(html, {
@@ -7,4 +8,8 @@ const getExcerpt = (html) => {
   })
 }
 
-export { getExcerpt }
+const Excerpt = (props) => {
+  return <p>{excerpts(props.html)}</p>;
+}
+
+export default Excerpt

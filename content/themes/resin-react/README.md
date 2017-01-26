@@ -13,4 +13,5 @@
 - [ ] Custom 404s (ghost currently doesn't send url helper to error.hbs so this makes it harder)
 - [ ] write components tests
 - [ ] test analytics
+- [ ] move components to `@resin/components`
 - [ ] disqus is loading a bunch of blocked scripts

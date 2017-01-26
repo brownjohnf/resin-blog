@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 
@@ -39,7 +40,7 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
         exclude: /node_modules/
       },
-      { test: /\.css$/, loader:'style-loader!css-loader?modules!postcss-loader' },
+      { test: /\.css$/, loader:'style-loader!css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader' },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file?name=public/fonts/[name].[ext]'

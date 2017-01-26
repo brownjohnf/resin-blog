@@ -6,7 +6,7 @@ const Logo = (props) => {
     <div className={styles.container}>
       <img className={styles.image} src={props.image} />
     </div>
-  )
-}
+  );
+};
 
 export default Logo;

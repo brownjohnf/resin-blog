@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './style.css';
 import Identicon from 'identicon.js';
 
 const GenerateIcon = (id, size) => {
   // key can be any unique id
   return new Identicon(id, size).toString();
-}
+};
 
 const getImage = (image, id, size) => {
   if (!image) {
-    return `data:image/png;base64,${GenerateIcon(id, size)}`
+    return `data:image/png;base64,${GenerateIcon(id, size)}`;
   }
-  return image
-}
+  return image;
+};
 
 const User = (props) => {
   return (
@@ -28,11 +28,11 @@ const User = (props) => {
         <p>{props.bio}</p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 User.defaultProps = {
   size: 420
-}
+};
 
 export default User;

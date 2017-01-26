@@ -9,3 +9,9 @@
   margin: 10px auto;
   line-height: 0;
 }
+
+@media only screen and (max-width: 500px) {
+  .image {
+    max-height: 80px;
+  }
+}

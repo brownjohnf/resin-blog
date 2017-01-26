@@ -15,7 +15,7 @@ if (isDevMode) {
 
   // use hmr api to rebuild assets when /src files change
   parentApp.use(require("webpack-dev-middleware")(compiler, {
-      noInfo: true, publicPath: webpackConfig.output.publicPath
+    publicPath: webpackConfig.output.publicPath
   }));
 
   // inject files and reload browser

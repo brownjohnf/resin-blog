@@ -1,8 +1,10 @@
 {
-  "name": "Resin.io",
+  "name": "Resin.io-blog-theme",
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack -d --watch"
+    "dev": "webpack -d --watch",
+    "build": "NODE_ENV=production webpack",
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "autoprefixer": "6.7.0",
@@ -11,7 +13,8 @@
     "babel-preset-es2015": "6.3.13",
     "babel-preset-react": "6.3.13",
     "css-loader": "0.26.1",
-    "extract-text-webpack-plugin": "1.0.1",
+    "eslint": "3.14.1",
+    "eslint-plugin-react": "6.9.0",
     "file-loader": "0.9.0",
     "json-loader": "0.5.4",
     "postcss-loader": "1.2.2",
@@ -22,13 +25,12 @@
   "dependencies": {
     "excerpts": "0.0.2",
     "identicon.js": "2.0.0",
-    "identicons": "0.1.0",
     "lodash": "4.17.4",
     "moment": "2.17.1",
-    "react": "0.14.7",
+    "react": "15.4.2",
     "react-disqus-comments": "0.5.2",
     "react-disqus-counter": "0.0.12",
-    "react-dom": "0.14.7",
+    "react-dom": "15.4.2",
     "react-helmet": "4.0.0",
     "react-markdown": "2.4.4",
     "react-router": "3.0.2",

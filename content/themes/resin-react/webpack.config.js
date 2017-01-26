@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDevMode = process.env.NODE_ENV === 'development' ? true : false;
 
@@ -9,7 +8,7 @@ const plugins = [];
 
 if (isDevMode) {
   // add HMR in dev mode
-  entries.push('webpack-hot-middleware/client?timeout=2000&overlay=false');
+  entries.push('webpack-hot-middleware/client');
   plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
@@ -20,7 +19,7 @@ module.exports = {
   output: {
     path: __dirname + '/assets',
     filename: 'bundle.js',
-    publicPath: '/assets/'
+    publicPath: '/assets/',
   },
   resolve: {
     alias: {

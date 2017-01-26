@@ -366,7 +366,30 @@ table.plain {
 }
 
 /* ==========================================================================
-9. Media Queries - Smaller than 900px
+4. Third Party Elements - Embeds from other services
+========================================================================== */
+
+/* Disqus */
+
+.dsq-brlink {
+  color: #eee;
+}
+
+/* Github */
+
+.gist table {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.gist .line-number {
+  min-width: 25px;
+  font-size: 1.1rem;
+}
+
+
+/* ==========================================================================
+5. Media Queries - Smaller than 900px
 ========================================================================== */
 
 @media only screen and (max-width: 900px) {
@@ -394,8 +417,9 @@ table.plain {
 
 }
 
+
 /* ==========================================================================
-10. Media Queries - Smaller than 500px
+6. Media Queries - Smaller than 500px
 ========================================================================== */
 
 

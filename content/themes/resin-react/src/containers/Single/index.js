@@ -3,18 +3,16 @@ import { URL, DISQUS_SHORTNAME } from 'settings';
 import excerpts from 'excerpts';
 
 // resin.io components
-import Pagination from 'components/Pagination';
 import Loading from 'components/Loading';
 import PostContainer from 'components/PostContainer';
 import MetaContainer from 'components/MetaContainer';
 import Tags from 'components/Tags';
-import Excerpt from 'components/Excerpt';
 import DateTime from 'components/DateTime';
 import Title from 'components/Title';
 import Share from 'components/Share';
 import User from 'components/User';
 
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import ReactDisqusComments from 'react-disqus-comments';
 import ReactDisqusCounter from 'react-disqus-counter';
@@ -26,44 +24,74 @@ class Single extends Component {
     super(props);
     this.state = {
       post: null
-    }
+    };
   }
 
   fetchPost(slug) {
+    this.setState({
+      loading: true
+    });
     fetch(
-      ghost.url.api('posts', 'slug', slug, { include: 'tags, author'} )
+      window.ghost.url.api('posts', 'slug', slug, {
+        include: 'tags, author'
+      })
     )
-    .then(response => response.json())
+    .then((response) => {
+      return response.json();
+    })
     .then((data) => {
       this.setState({
         post: data.posts[0]
-      })
-    })
+      });
+    });
   }
 
   componentDidMount() {
-    this.fetchPost(this.props.params.postSlug)
+    this.fetchPost(this.props.params.postSlug);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchPost(nextProps.params.postSlug)
+    this.fetchPost(nextProps.params.postSlug);
   }
 
   render() {
-    const { post } = this.state;
+    const {
+ post
+} = this.state;
     if (post) {
-      return(
+      return (
         <PostContainer>
           <Helmet
             title={post.title}
             meta={[
-              {name: "description", content: excerpts(post.html)},
-              {property: "og:type", content: "article"},
-              {property: "og:url", content: URL + this.props.location.pathname},
-              {property: "og:image", content: post.image},
-              {property: "twitter:title", content: post.title},
-              {property: "twitter:url", content: URL + this.props.location.pathname},
-              {property: "twitter:image", content: post.image}
+              {
+                name: 'description',
+                content: excerpts(post.html)
+              },
+              {
+                property: 'og:type',
+                content: 'article'
+              },
+              {
+                property: 'og:url',
+                content: URL + this.props.location.pathname
+              },
+              {
+                property: 'og:image',
+                content: post.image
+              },
+              {
+                property: 'twitter:title',
+                content: post.title
+              },
+              {
+                property: 'twitter:url',
+                content: URL + this.props.location.pathname
+              },
+              {
+                property: 'twitter:image',
+                content: post.image
+              }
             ]}
           />
           <MetaContainer>
@@ -78,7 +106,11 @@ class Single extends Component {
 
           </MetaContainer>
           <Title title={post.title}/>
-          <MetaContainer style={{borderTop: '1px solid #e8ecf2', borderBottom: '1px solid #e8ecf2', padding: '10px 0' }}>
+          <MetaContainer style={{
+            borderTop: '1px solid #e8ecf2',
+            borderBottom: '1px solid #e8ecf2',
+            padding: '10px 0'
+          }}>
             <User
               name={post.author.name}
               image={post.author.image}
@@ -86,7 +118,11 @@ class Single extends Component {
               bio={post.author.bio}/>
           </MetaContainer>
           <ReactMarkdown source={post.markdown} />
-          <MetaContainer style={{borderTop: '1px solid #e8ecf2', borderBottom: '1px solid #e8ecf2', padding: '10px 0' }}>
+          <MetaContainer style={{
+            borderTop: '1px solid #e8ecf2',
+            borderBottom: '1px solid #e8ecf2',
+            padding: '10px 0'
+          }}>
             <Share/>
             <ReactDisqusComments
               shortname={DISQUS_SHORTNAME}
@@ -98,9 +134,9 @@ class Single extends Component {
           </MetaContainer>
         </PostContainer>
       );
-    } else {
-      return (<Loading />);
     }
+    return <Loading />;
+
   }
 }
 

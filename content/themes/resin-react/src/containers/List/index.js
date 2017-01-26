@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
 // resin.io components
 import Pagination from 'components/Pagination';
@@ -14,47 +13,57 @@ import Title from 'components/Title';
 // Thirdparty components
 import { Link } from 'react-router';
 import ReactDisqusCounter from 'react-disqus-counter';
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
 import { POST_PER_PAGE, BLOG_TITLE, BLOG_DESCRIPTION, URL, DISQUS_SHORTNAME } from 'settings';
 
+import { logoImg } from '../../static/images/logo.png';
+
 class List extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       loading: true
     };
   }
 
   fetchPosts(query) {
-    this.setState({ loading: true })
-    fetch(ghost.url.api('posts', query))
-    .then(response => response.json())
+    this.setState({
+      loading: true
+    });
+    fetch(window.ghost.url.api('posts', query))
+    .then((response) => {
+      return response.json();
+    })
     .then((data) => {
       this.setState({
         posts: data.posts,
         meta: data.meta,
         loading: false
-      })
-    })
+      });
+    });
   }
 
   buildApiQuery(props) {
-    const { pageNumber, tagName } = props.params
-    const filter = tagName ? `tags:${tagName}`: null;
+    const {
+      pageNumber, tagName
+    } = props.params;
+    const filter = tagName ? `tags:${tagName}` : null;
     return {
       page: pageNumber,
       limit: POST_PER_PAGE,
       include: 'tags, author',
       filter: filter
-    }
+    };
   }
 
   getRoutePath(props) {
     // gets the correct link path to pass to pagination
-    const { pageNumber, tagName } = props.params
-    const tagPath = tagName ? `/tag/${tagName}` : ''
-    return `${tagPath}/page/`
+    const {
+      tagName
+    } = props.params;
+    const tagPath = tagName ? `/tag/${tagName}` : '';
+    return `${tagPath}/page/`;
   }
 
   renderPosts(posts) {
@@ -74,8 +83,8 @@ class List extends Component {
                 <Title title={post.title} url={post.url} />
                 <Excerpt html={post.html} />
               </PostContainer>
-              )
-    })
+      );
+    });
   }
 
   renderPagination(pagination) {
@@ -84,15 +93,15 @@ class List extends Component {
               pages={pagination.pages}
               path={this.getRoutePath(this.props)}
               next={ pagination.next }
-              prev={ pagination.prev } />
+              prev={ pagination.prev } />;
   }
 
   componentDidMount() {
-    this.fetchPosts(this.buildApiQuery(this.props))
+    this.fetchPosts(this.buildApiQuery(this.props));
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchPosts(this.buildApiQuery(nextProps))
+    this.fetchPosts(this.buildApiQuery(nextProps));
   }
 
   render() {
@@ -101,19 +110,40 @@ class List extends Component {
         <Helmet
           title={BLOG_TITLE}
           meta={[
-            {name: "description", content: BLOG_DESCRIPTION},
-            {property: "og:type", content: "website"},
-            {property: "og:url", content: URL + this.props.location.pathname},
-            {property: "og:image", content: 'http://resin.io/blog/content/images/2015/Jan/Header_Image_Ghost.png'},
-            {property: "twitter:title", content: BLOG_TITLE},
-            {property: "twitter:url", content: URL},
-            {property: "twitter:image", content: 'http://resin.io/blog/content/images/2015/Jan/Header_Image_Ghost.png'}
+            {
+              name: 'description',
+              content: BLOG_DESCRIPTION
+            },
+            {
+              property: 'og:type',
+              content: 'website'
+            },
+            {
+              property: 'og:url',
+              content: URL + this.props.location.pathname
+            },
+            {
+              property: 'og:image',
+              content: logoImg
+            },
+            {
+              property: 'twitter:title',
+              content: BLOG_TITLE
+            },
+            {
+              property: 'twitter:url',
+              content: URL
+            },
+            {
+              property: 'twitter:image',
+              content: logoImg
+            }
           ]}
         />
         {this.state.loading ? <Loading /> : this.renderPosts(this.state.posts)}
         {!this.state.loading && this.renderPagination(this.state.meta.pagination)}
       </div>
-    )
+    );
   }
 }
 

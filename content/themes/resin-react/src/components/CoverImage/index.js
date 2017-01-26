@@ -6,23 +6,28 @@ const CoverImage = (props) => {
     <div
       className={styles.container}
       style={
-        {
-          backgroundImage: `url(${props.image})`,
-          height: props.height || '100vh',
-          marginBottom: props.mb || '0'
-        }
+      {
+        backgroundImage: `url(${props.image})`,
+        height: props.height,
+        marginBottom: props.mb
+      }
       }>
       {props.children}
     </div>
-  )
-}
+  );
+};
+
+CoverImage.defaultProps = {
+  height: '100vh',
+  mb: '0'
+};
 
 const Vertical = (props) => {
   return (
     <div className={styles.vertical}>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 export { CoverImage, Vertical };

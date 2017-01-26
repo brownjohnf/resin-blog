@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import excerpts from 'excerpts';
 
 const getExcerpt = (html) => {
   return excerpts(html, {
-    words:   50, // Set to false to get html code
-    append: '...', // Amount of characters that the excerpt should contain
-  })
-}
+    words: 50,
+    append: '...'
+  });
+};
 
 const Excerpt = (props) => {
-  return <p>{excerpts(props.html)}</p>;
-}
+  return <p>{getExcerpt(props.html)}</p>;
+};
 
-export default Excerpt
+export default Excerpt;

@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "excerpts": "0.0.2",
+    "identicon.js": "2.0.0",
+    "identicons": "0.1.0",
     "lodash": "4.17.4",
     "moment": "2.17.1",
     "react": "0.14.7",

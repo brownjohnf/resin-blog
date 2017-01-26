@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ShareButtons, generateShareIcon } from 'react-share';
+import styles from './style.css';
 
 const {
   FacebookShareButton,
@@ -12,27 +13,31 @@ const TwitterIcon = generateShareIcon('twitter');
 const GooglePlusIcon = generateShareIcon('google');
 
 const Share = (props) => {
-  const { url } = props
   return (
-    <section className="share">
-        <h4>Share this post</h4>
-        <FacebookShareButton url={url}>
+    <div>
+        <h4 className={styles.title}>{props.title}</h4>
+        <FacebookShareButton className={styles.button} url={props.url}>
           <FacebookIcon
             size={32}
             round />
         </FacebookShareButton>
-        <GooglePlusShareButton url={url}>
+        <GooglePlusShareButton className={styles.button} url={props.url}>
           <GooglePlusIcon
             size={32}
             round />
         </GooglePlusShareButton>
-        <TwitterShareButton url={url}>
+        <TwitterShareButton className={styles.button} url={props.url}>
           <TwitterIcon
           size={32}
           round />
         </TwitterShareButton>
-    </section>
+    </div>
   )
+}
+
+Share.defaultProps = {
+  url: window ? window.location.href : 'https://resin.io',
+  title: 'Share'
 }
 
 export default Share;

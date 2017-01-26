@@ -1,16 +1,33 @@
-.imageContainer {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.container {
   display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.imageContainer {
+  composes: container;
   width: 90px;
   height: 90px;
   border-radius: 100%;
   overflow: hidden;
   padding: 6px;
-  background: #fff;
   z-index: 2;
   box-shadow: #E7EEF2 0 0 0 1px;
+}
+
+.textContainer {
+  composes: container;
+  margin-left: 10px;
+}
+
+.textContainer p {
+  margin: 0;
+  line-height: 20px;
+}
+
+.name {
+  font-weight: bold;
+  color: #3A4145;
 }
 
 .imageContainer img {

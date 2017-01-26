@@ -66,7 +66,6 @@ class Single extends Component {
               {property: "twitter:image", content: post.image}
             ]}
           />
-          <Title title={post.title}/>
           <MetaContainer>
             <DateTime date={post.published_at} />
             <Tags tags={post.tags} />
@@ -76,17 +75,27 @@ class Single extends Component {
                 shortname={DISQUS_SHORTNAME}
               />
             </Link>
-            <User user={post.author} />
+
+          </MetaContainer>
+          <Title title={post.title}/>
+          <MetaContainer style={{borderTop: '1px solid #e8ecf2', borderBottom: '1px solid #e8ecf2', padding: '10px 0' }}>
+            <User
+              name={post.author.name}
+              image={post.author.image}
+              id={post.author.uuid}
+              bio={post.author.bio}/>
           </MetaContainer>
           <ReactMarkdown source={post.markdown} />
-          <Share url={URL + post.url}/>
-          <ReactDisqusComments
-            shortname={DISQUS_SHORTNAME}
-            title={post.title}
-            url={URL + post.url}
-            identifier={URL + post.url}
-            onNewComment={this.handleNewComment}
-          />
+          <MetaContainer style={{borderTop: '1px solid #e8ecf2', borderBottom: '1px solid #e8ecf2', padding: '10px 0' }}>
+            <Share/>
+            <ReactDisqusComments
+              shortname={DISQUS_SHORTNAME}
+              title={post.title}
+              url={URL + post.url}
+              identifier={URL + post.url}
+              onNewComment={this.handleNewComment}
+            />
+          </MetaContainer>
         </PostContainer>
       );
     } else {

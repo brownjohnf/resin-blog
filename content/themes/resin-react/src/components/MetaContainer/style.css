@@ -1,9 +1,10 @@
 .container {
   display: inline-block;
-  margin: 0 0 5px 0;
+  margin: 10px 0;
   font-family: 'proxima-nova', 'Open Sans', sans-serif;
   font-size: 1.5rem;
   color: #9EABB3;
+  width: 100%;
 }
 
 .container a {

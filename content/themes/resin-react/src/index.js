@@ -16,16 +16,16 @@ import { URL, BLOG_TITLE } from './settings';
 
 
 const routeHandler = () => {
-  if (window.ga != undefined) {
-    // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
-    ga('set', 'page', window.location.pathname);
-    ga('send', 'pageview');
-  }
-  if (window._gs != undefined) {
-    // https://www.gosquared.com/docs/api/javascript-tracking-code/track-pageviews
-    _gs('track');
-    _gs('track', window.location.pathname, document.title);
-  }
+  // if (window.ga != undefined) {
+  //   // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
+  //   ga('set', 'page', window.location.pathname);
+  //   ga('send', 'pageview');
+  // }
+  // if (window._gs != undefined) {
+  //   // https://www.gosquared.com/docs/api/javascript-tracking-code/track-pageviews
+  //   _gs('track');
+  //   _gs('track', window.location.pathname, document.title);
+  // }
 }
 
 const App = (props) => {

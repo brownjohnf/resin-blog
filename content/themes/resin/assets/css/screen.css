@@ -696,10 +696,9 @@ links remain at a fixed width the whole time */
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
-  margin-left: 10px;
   font-size: 18px;
-  line-height: 50px;
-  vertical-align: text-bottom;
+  line-height: 90px;
+  vertical-align: middle;
 }
 
 .author-meta span {
@@ -718,6 +717,7 @@ links remain at a fixed width the whole time */
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
+  vertical-align: middle;
   width: 90px;
   height: 90px;
   border-radius: 100%;
@@ -726,6 +726,7 @@ links remain at a fixed width the whole time */
   background: #fff;
   z-index: 2;
   box-shadow: #E7EEF2 0 0 0 1px;
+  margin-right: 10px;
 }
 
 .author-image .img {

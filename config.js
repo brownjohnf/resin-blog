@@ -47,4 +47,3 @@ config = { production: ghostConfig, development: ghostConfig };
 
 // Export config
 module.exports = config;
-

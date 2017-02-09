@@ -5,7 +5,6 @@
 /*globals jQuery, document */
 (function ($) {
     "use strict";
-
     $(document).ready(function() {
 
       $('.menu-btn').click (function(){
@@ -24,8 +23,9 @@
       $("#search-field").ghostHunter({
         results         : "#search-results",
         info_template   : "<p>Number of posts found: {{amount}}</p>",
-        onKeyUp         : true
-        result_template : "<a class='search-result', href='{{link}}'><h5>{{title}}</h5><p>{{pubDate}}</p></a></hr>",
+        onKeyUp         : true,
+        // prefix relative link with /blog to respect subdir
+        result_template : "<a class='search-result', href='/blog{{link}}'><h5>{{title}}</h5><p>{{pubDate}}</p></a></hr>",
         before          : function(){
           $('#search-loading').show()
         },

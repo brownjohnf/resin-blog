@@ -16,4 +16,3 @@ shell: build
 
 exec:
 	docker exec -it $$(docker ps | grep "${IMAGE}" | cut -f 1 -d ' ') /bin/bash
-

@@ -11,21 +11,12 @@ module.exports = function() {
   hbs.registerHelper('getToken', function (service) {
     const analytics = {
       // google analytics
-      ga: {
-        development: process.env.GA_TOKEN,
-        production: process.env.GA_TOKEN  || 'UA-45671959-1'
-      },
-      mixpanel: {
-        development: process.env.MIXPANEL_TOKEN || 'cb974f32bab01ecc1171937026774b18',
-        production: process.env.MIXPANEL_TOKEN || '99eec53325d4f45dd0633abd719e3ff1',
-      },
+      ga: process.env.GA_TOKEN,
+      mixpanel: process.env.MIXPANEL_TOKEN,
       // gosquared
-      _gs: {
-        development: process.env.MIXPANEL_TOKEN,
-        production: process.env.MIXPANEL_TOKEN || 'GSN-831588-U',
-      }
+      _gs: process.env.GS_TOKEN
     }
 
-    return analytics[service][process.env.NODE_ENV];
+    return analytics[service];
   });
 }

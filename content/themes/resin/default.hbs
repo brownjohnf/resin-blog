@@ -45,8 +45,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     {{ghost_foot}}
 
-    {{! Need to include it manually because ghost app does not support assets }}
-    <script type="text/javascript">window.mixpanelToken='{{getToken "mixpanel"}}'</script>
+    <script type="text/javascript">
+    window.mixpanelToken='{{getToken "mixpanel"}}'
+    window.blogUrl='{{@blog.url}}'
+    </script>
     <script src="{{asset 'js/mixpanel.js'}}"></script>
     <script type="text/javascript" src="{{asset "js/ghostHunter.min.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>

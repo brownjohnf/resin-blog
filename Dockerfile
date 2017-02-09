@@ -1,15 +1,15 @@
-FROM library/node:4.2
+FROM library/node:4.6
 
-EXPOSE 2368
+ENV NODE_ENV production
+ENTRYPOINT ["/usr/local/bin/pm2"]
+CMD ["start", "--no-daemon", "--name", "ghost", "index.js"]
 
-WORKDIR /usr/src/app
+RUN npm install -g pm2
 
-COPY package.json ./.
-COPY core ./core
+WORKDIR /usr/local/src/app
+COPY package.json .
 RUN npm install --unsafe-perm --production \
 	&& npm cache clean
 
 COPY . .
 
-ENTRYPOINT ["/usr/local/bin/npm"]
-CMD ["start", "--production"]
